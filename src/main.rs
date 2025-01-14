@@ -19,15 +19,16 @@ fn format_file(file_path: &str) -> bool {
     let formatted_content = fs::read_to_string(file_path).expect("Failed to read formatted file");
 
     if original_content != formatted_content {
-        println!("Formatted: {}", file_path);
-        return true;
+        let display_path = file_path.strip_prefix("src/").unwrap_or(file_path);
+        println!("Formatted: {}", display_path);
+        true
+    } else {
+        false
     }
-
-    false
 }
 
 fn format_all_files() {
-    let current_dir = std::env::current_dir().expect("Failed to get current directory");
+    let current_dir = env::current_dir().expect("Failed to get current directory");
 
     for entry in WalkDir::new(&current_dir)
         .into_iter()
@@ -42,14 +43,18 @@ fn format_all_files() {
 
 fn main() {
     let args: Vec<String> = env::args().collect();
+
     if args.len() > 1 && args[1] == "rusty" {
-        if !Command::new("rustfmt").output().is_ok() {
+        if Command::new("rustfmt").output().is_err() {
             eprintln!("rustfmt is not installed or not in the PATH.");
             exit(1);
         }
-        println!("Formatting files...");
+
+        println!("Starting Rusty Formatter...");
         format_all_files();
-        println!("Done!");
-        return;
+        println!("Formatting completed!");
+    } else {
+        eprintln!("Usage: cargo run rusty");
+        exit(1);
     }
 }
