@@ -8,7 +8,7 @@ repository = "https://github.com/S42yt/rusty-cargo.git"
 homepage = "https://yourhomepage.com"
 readme = "README.md"
 keywords = ["Rust", "Formatter", "Easy"]
-categories = ["Formatter"]
+categories = ["command-line-utilities"]
 edition = "2021"
 
 [dependencies]
