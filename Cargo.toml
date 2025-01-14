@@ -1,6 +1,6 @@
 [package]
 name = "rusty-formatter"
-version = "0.1.6"
+version = "0.1.6.1"
 authors = ["Musa <songoku42@outlook.de>"]
 description = "This is the offical Rusty: Rust Formatter, Cargo Package."
 license = "MIT" 

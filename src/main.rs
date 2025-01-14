@@ -3,7 +3,7 @@ use std::fs;
 use std::process::{exit, Command};
 use walkdir::WalkDir;
 
-const VERSION: &str = "0.1.6";
+const VERSION: &str = "0.1.6.1";
 
 fn format_file(file_path: &str) -> bool {
     let original_content = fs::read_to_string(file_path).expect("Failed to read file");
